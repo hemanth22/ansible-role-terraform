@@ -1,0 +1,17 @@
+---
+# tasks file for hemanth22.terraform
+
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+
+- name: Add HashiCorp repository
+  command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+  args:
+    creates: /etc/yum.repos.d/hashicorp.repo
+
+- name: Install Terraform
+  yum:
+    name: terraform
+    state: present
