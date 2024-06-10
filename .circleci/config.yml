@@ -44,5 +44,5 @@ workflows:
       - test:
           matrix:
             parameters:
-              python-version: ["3.7", "3.8", "3.9"]
+              python-version: ["python3.9"]
               distro: ["rockylinux9", "rockylinux8"]
