@@ -6,3 +6,10 @@ rules:
     max: 200
     level: warning
 
+skip_list:
+  - yaml[truthy]
+
+exclude_paths:
+  - meta/main.yml
+  - .github/workflows/ci.yaml
+  - .github/workflows/release.yml
