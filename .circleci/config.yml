@@ -18,9 +18,8 @@ jobs:
           name: Set up Python environment
           command: |
             python -V
-            curl https://pyenv.run | bash
-            pyenv install -s python3
-            pyenv global python3
+            pyenv install -s 3.9
+            pyenv global 3.9
             python -m venv venv
             . venv/bin/activate
       - run:
