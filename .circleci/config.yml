@@ -10,8 +10,6 @@ jobs:
   test:
     executor: python-executor
     parameters:
-      python-version:
-        type: string
       distro:
         type: string
     steps:
@@ -19,8 +17,10 @@ jobs:
       - run:
           name: Set up Python environment
           command: |
-            pyenv install -s << parameters.python-version >>
-            pyenv global << parameters.python-version >>
+            python -V
+            curl https://pyenv.run | bash
+            pyenv install -s python3
+            pyenv global python3
             python -m venv venv
             . venv/bin/activate
       - run:
@@ -44,5 +44,4 @@ workflows:
       - test:
           matrix:
             parameters:
-              python-version: ["python3.9"]
               distro: ["rockylinux9", "rockylinux8"]
