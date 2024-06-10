@@ -1,0 +1,48 @@
+version: 2.1
+
+executors:
+  python-executor:
+    docker:
+      - image: circleci/python:3.8
+    working_directory: ~/repo
+
+jobs:
+  test:
+    executor: python-executor
+    parameters:
+      python-version:
+        type: string
+      distro:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Set up Python environment
+          command: |
+            pyenv install -s << parameters.python-version >>
+            pyenv global << parameters.python-version >>
+            python -m venv venv
+            . venv/bin/activate
+      - run:
+          name: Display list of files
+          command: ls -ltra
+      - run:
+          name: Install dependencies
+          command: |
+            . venv/bin/activate
+            pip install molecule docker ansible
+      - run:
+          name: Run Molecule tests
+          command: |
+            . venv/bin/activate
+            PY_COLORS=1 ANSIBLE_FORCE_COLOR=1 MOLECULE_DISTRO=<< parameters.distro >> molecule test
+
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              python-version: ["3.7", "3.8", "3.9"]
+              distro: ["ubuntu", "centos", "debian"]
