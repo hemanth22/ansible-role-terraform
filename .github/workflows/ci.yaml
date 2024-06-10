@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Verify current working directory
+        run: ls -ltra
+
       - name: Install test dependencies.
         run: pip3 install yamllint
 
@@ -55,6 +58,9 @@ jobs:
 
       - name: Install test dependencies.
         run: pip3 install ansible molecule molecule-plugins[docker] docker
+
+      - name: Verify current working directory
+        run: ls -ltra
 
       - name: Run Molecule tests.
         run: molecule test
