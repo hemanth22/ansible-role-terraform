@@ -19,8 +19,8 @@ jobs:
       - run:
           name: Set up Python environment
           command: |
-            pyenv install -s << parameters.python-version >>
-            pyenv global << parameters.python-version >>
+            pyenv install -s << python.python-version >>
+            pyenv global << python.python-version >>
             python -m venv venv
             . venv/bin/activate
       - run:
