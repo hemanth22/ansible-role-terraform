@@ -45,4 +45,4 @@ workflows:
           matrix:
             parameters:
               python-version: ["3.7", "3.8", "3.9"]
-              distro: ["ubuntu", "centos", "debian"]
+              distro: ["rockylinux9", "rockylinux8"]
