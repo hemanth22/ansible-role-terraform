@@ -60,7 +60,7 @@ jobs:
         run: pip3 install ansible molecule molecule-plugins[docker] docker
 
       - name: Verify current working directory
-        run: ls -ltra
+        run: ls -ltra;pwd
 
       - name: Run Molecule tests.
         run: molecule test
