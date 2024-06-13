@@ -17,17 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         with:
           path: 'hemanth22.terraform'
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-
-      - name: Verify current working directory
-        run: ls -ltra
 
       - name: Install test dependencies.
         run: pip3 install yamllint
@@ -35,36 +32,27 @@ jobs:
       - name: Lint code.
         run: |
           yamllint .
-
   molecule:
     name: Molecule
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        distro:
-          - rockylinux8
-          - rockylinux9
-
+        include:
+          - distro: centos8
+            playbook: converge.yml
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         with:
           path: 'hemanth22.terraform'
 
       - name: Set up Python 3.
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
-
-      - name: Install python dependencies
-        run: |
-          python -m pip install --upgrade pip
+          python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker
-
-      - name: Verify current working directory
-        run: ls -ltra;pwd
+        run: pip3 install ansible molecule[docker] docker
 
       - name: Run Molecule tests.
         run: molecule test
@@ -72,3 +60,4 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
+          MOLECULE_PLAYBOOK: ${{ matrix.playbook }}
