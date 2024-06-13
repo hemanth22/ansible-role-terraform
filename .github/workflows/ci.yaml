@@ -8,7 +8,7 @@ name: CI
 
 defaults:
   run:
-    working-directory: 'geerlingguy.php'
+    working-directory: 'hemanth22.terraform'
 
 jobs:
 
@@ -19,12 +19,13 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v4
         with:
-          path: 'geerlingguy.php'
+          path: 'hemanth22.terraform'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
 
       - name: Install test dependencies.
         run: pip3 install yamllint
@@ -41,14 +42,6 @@ jobs:
         include:
           - distro: rockylinux8
             playbook: converge.yml
-          - distro: ubuntu2204
-            playbook: converge.yml
-          - distro: ubuntu2004
-            playbook: converge.yml
-          - distro: debian12
-            playbook: converge.yml
-          - distro: debian11
-            playbook: converge.yml
 
           # Had some trouble, might fix later.
           # - distro: debian11
@@ -58,12 +51,13 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v4
         with:
-          path: 'geerlingguy.php'
+          path: 'hemanth22.terraform'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
 
       - name: Install test dependencies.
         run: pip3 install ansible molecule molecule-plugins[docker] docker
