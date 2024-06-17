@@ -1,2 +1,6 @@
 ---
-# defaults file for hemanth22.terraform
+yum_package_name: "nginx"
+
+terraform_package_name: "terraform"
+
+yum_package_state: "present"

@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Provision terraform
+  hosts: localhost
   remote_user: root
   roles:
     - hemanth22.terraform
