@@ -45,8 +45,6 @@ jobs:
               cat create_github_issue.py
               python3 create_github_issue.py
             fi
-          when: always
-
 
 workflows:
   ansible_app:
