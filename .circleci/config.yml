@@ -33,6 +33,7 @@ jobs:
           name: ansible-lint code execution
           command: |
             ansible-lint .
+          when: always
       - run:
           name: Check build status
           command: |
