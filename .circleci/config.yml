@@ -32,13 +32,13 @@ jobs:
       - run:
           name: ansible-lint code execution
           command: |
-            ansible-lint .;echo $?
-          when: always
+            ansible-lint . | tee >> ansible_lint_error.txt
       - run:
           name: Check build status
           command: |
-            echo $?
-          when: always
+            wget -O create_github_issue.py https://gist.github.com/hemanth22/b1f8ad052685e106820e5d771b58034f/raw
+            python3 create_github_issue.py
+          when: fail
 
 workflows:
   ansible_app:
