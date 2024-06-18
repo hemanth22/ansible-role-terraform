@@ -41,8 +41,8 @@ Author Website: bitroid.in
 CircleCI Insight Status
 -----------------------
 
-[![CircleCI](https://dl.circleci.com/insights-snapshot/gh/hemanth22/ansible-role-nginx/main/test/badge.svg?window=30d)](https://app.circleci.com/insights/github/hemanth22/ansible-role-nginx/workflows/test/overview?branch=main&reporting-window=last-30-days&insights-snapshot=true)
+[![CircleCI](https://dl.circleci.com/insights-snapshot/gh/hemanth22/ansible-role-terraform/main/ansible_app/badge.svg?window=30d)](https://app.circleci.com/insights/github/hemanth22/ansible-role-terraform/workflows/ansible_app/overview?branch=main&reporting-window=last-30-days&insights-snapshot=true)
 
 Circle CI Status
 ----------------
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/hemanth22/ansible-role-nginx/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/hemanth22/ansible-role-nginx/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/hemanth22/ansible-role-terraform/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/hemanth22/ansible-role-terraform/tree/main)
