@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Print Python Verson
           command: |
-            dnf install python3-pip -y
+            dnf install python3-pip wget -y
             python3 -V
             python3 -m pip install requests
       - run:
@@ -33,6 +33,15 @@ jobs:
           name: ansible-lint code execution
           command: |
             ansible-lint .
+      - run:
+          name: Check build status
+          command: |
+            if [ $? -ne 0 ]; then
+              echo "Build failed" > build_failed.txt
+              ansible-lint . | tee >> ansible_lint_error.txt
+              wget -O create_github_issue.py https://gist.github.com/hemanth22/b1f8ad052685e106820e5d771b58034f/raw
+              python3 create_github_issue.py
+            fi
 
 workflows:
   ansible_app:
