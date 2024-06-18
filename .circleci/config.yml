@@ -33,6 +33,7 @@ jobs:
           name: ansible-lint code execution
           command: |
             ansible-lint .
+          when: on_fail
       - run:
           name: Check build status
           command: |
@@ -44,7 +45,7 @@ jobs:
               cat create_github_issue.py
               python3 create_github_issue.py
             fi
-          when: on_fail
+
 
 workflows:
   ansible_app:
