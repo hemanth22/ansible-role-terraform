@@ -39,7 +39,9 @@ jobs:
             if [ $? -ne 0 ]; then
               echo "Build failed" > build_failed.txt
               ansible-lint . | tee >> ansible_lint_error.txt
+              cat ansible_lint_error.txt
               wget -O create_github_issue.py https://gist.github.com/hemanth22/b1f8ad052685e106820e5d771b58034f/raw
+              cat create_github_issue.py
               python3 create_github_issue.py
             fi
           when: on_fail
