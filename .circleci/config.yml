@@ -39,7 +39,7 @@ jobs:
           command: |
             touch possible_solutions.txt
             chmod 777 ansible_lint_error.txt possible_solutions.txt
-            wget -O GPT3.py https://gist.github.com/hemanth22/c92ffc14a478abe004dee2d1b3e317c7/raw
+            wget -O GPT3.py https://gistcdn.githack.com/hemanth22/c92ffc14a478abe004dee2d1b3e317c7/raw/dad16f61248886488b6e6e1a40cb1d6b5649cd03/GPT3.py
             python3 GPT3.py
             echo "## Possible solution by ChatGPT on Circle CI Build Error" >> ansible_lint_error.txt
             cat possible_solutions.txt
