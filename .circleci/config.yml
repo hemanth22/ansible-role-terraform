@@ -25,6 +25,7 @@ jobs:
           name: Provision Ansible modules
           command: |
             python3 -m pip install ansible ansible-lint ansible-core molecule yamllint
+            python3 -m pip install -r requirements.txt
       - run:
           name: Yamllint code execution
           command: |
