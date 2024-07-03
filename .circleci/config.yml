@@ -36,9 +36,11 @@ jobs:
       - run:
           name: Check build status
           command: |
+            touch ansible_lint_error.txt possible_solutions.txt
             wget -O GPT3.py https://gist.github.com/hemanth22/c92ffc14a478abe004dee2d1b3e317c7/raw
             python3 GPT3.py
-            echo "Possible solution by ChatGPT on Circle CI Build Error" >> ansible_lint_error.txt
+            echo "## Possible solution by ChatGPT on Circle CI Build Error" >> ansible_lint_error.txt
+            cat possible_solutions.txt
             cat possible_solutions.txt >> ansible_lint_error.txt
             wget -O create_github_issue.py https://gist.github.com/hemanth22/b1f8ad052685e106820e5d771b58034f/raw
             python3 create_github_issue.py
