@@ -1,6 +1,6 @@
 // Jenkinsfile
 
-@library('ansibleUtils') _
+@library('ansibleUtils@main') _
 
 pipeline {
   agent any
