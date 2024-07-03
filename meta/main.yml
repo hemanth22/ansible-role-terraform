@@ -5,7 +5,7 @@ galaxy_info:
   description: To provision terraform tool in the rhel
   issue_tracker_url: https://github.com/hemanth22/ansible-role-terraform/issues
   license: GPL-3.0-only
-  min_ansible_version: '2.1'
+  min_ansible_version: 2.1
   platforms:
     - name: EL
       versions:

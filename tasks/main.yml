@@ -5,11 +5,11 @@
     state: "{{ yum_package_state }}"
 
 - name: Add HashiCorp repository
-  ansible.builtin.command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+  command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
   args:
     creates: /etc/yum.repos.d/hashicorp.repo
 
 - name: Install Terraform
-  ansible.builtin.yum:
+  yum:
     name: "{{ terraform_package_name }}"
     state: "{{ yum_package_state }}"
