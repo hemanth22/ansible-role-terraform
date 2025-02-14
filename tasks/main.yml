@@ -9,12 +9,17 @@
     state: "{{ yum_package_state }}"
   when: yum_package_name not in ansible_facts.packages
 
+- name: Check if HashiCorp repository file exists
+  ansible.builtin.stat:
+    path: /etc/yum.repos.d/hashicorp.repo
+  register: hashicorp_repo_file
+
 - name: Add HashiCorp repository
   ansible.builtin.get_url:
     url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
     dest: /etc/yum.repos.d/hashicorp.repo
     mode: '0644'
-  when: not ansible_facts.files['/etc/yum.repos.d/hashicorp.repo'].exists
+  when: not hashicorp_repo_file.stat.exists
 
 - name: Install Terraform
   ansible.builtin.yum:
