@@ -1,8 +1,19 @@
 ---
+- name: Check if {{ yum_package_name }} is installed
+  ansible.builtin.shell: command -v {{ yum_package_name }}
+    register: package_check
+    ignore_errors: true
+
 - name: Install yum-utils
   ansible.builtin.yum:
     name: "{{ yum_package_name }}"
     state: "{{ yum_package_state }}"
+
+- name: Install {{ yum_package_name }} if not installed
+  ansible.builtin.yum:
+    name: "{{ yum_package_name }}"
+    state: "{{ yum_package_state }}"
+  when: package_check.rc != 0
 
 - name: Add HashiCorp repository
   command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
