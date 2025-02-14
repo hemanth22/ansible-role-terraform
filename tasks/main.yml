@@ -1,21 +1,23 @@
 ---
-- name: Check if {{ yum_package_name }} is installed
-  ansible.builtin.shell: command -v {{ yum_package_name }}
-  register: package_check
-  ignore_errors: true
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: auto
 
 - name: Install {{ yum_package_name }} if not installed
   ansible.builtin.yum:
     name: "{{ yum_package_name }}"
     state: "{{ yum_package_state }}"
-  when: package_check.rc != 0
+  when: yum_package_name not in ansible_facts.packages
 
 - name: Add HashiCorp repository
-  command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-  args:
-    creates: /etc/yum.repos.d/hashicorp.repo
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: '0644'
+  when: not ansible_facts.files['/etc/yum.repos.d/hashicorp.repo'].exists
 
 - name: Install Terraform
-  yum:
+  ansible.builtin.yum:
     name: "{{ terraform_package_name }}"
     state: "{{ yum_package_state }}"
+  when: terraform_package_name not in ansible_facts.packages
