@@ -1,5 +1,5 @@
 ---
-yum_package_name: "nginx"
+yum_package_name: "yum-utils"
 
 terraform_package_name: "terraform"
 
