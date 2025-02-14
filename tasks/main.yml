@@ -2,12 +2,7 @@
 - name: Check if {{ yum_package_name }} is installed
   ansible.builtin.shell: command -v {{ yum_package_name }}
     register: package_check
-    ignore_errors: true
-
-- name: Install yum-utils
-  ansible.builtin.yum:
-    name: "{{ yum_package_name }}"
-    state: "{{ yum_package_state }}"
+  ignore_errors: true
 
 - name: Install {{ yum_package_name }} if not installed
   ansible.builtin.yum:
